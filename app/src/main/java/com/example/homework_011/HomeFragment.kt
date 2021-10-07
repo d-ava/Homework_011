@@ -19,8 +19,8 @@ class HomeFragment : Fragment() {
     private val layoutManager = GridLayoutManager(context, 2)
 
 
-    private lateinit var binding: HomeScreenBinding
-    //private var binding:HomeScreenBinding? = null
+    //private lateinit var binding: HomeScreenBinding
+    private var binding:HomeScreenBinding? = null
 
     private lateinit var search: EditText  //for search edittext
 
@@ -50,8 +50,8 @@ class HomeFragment : Fragment() {
         binding = HomeScreenBinding.inflate(inflater, container, false)
 
         adapter.setData(itemList)
-        binding.recyclerView.adapter = adapter
-        binding.recyclerView.layoutManager = layoutManager
+        binding!!.recyclerView.adapter = adapter
+        binding!!.recyclerView.layoutManager = layoutManager
 
         //
         fun filterText(text: String) {
@@ -67,7 +67,8 @@ class HomeFragment : Fragment() {
 
         //
 
-        search = binding.etSearch
+        search = binding!!.etSearch
+
         search.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
@@ -91,7 +92,13 @@ class HomeFragment : Fragment() {
 //
 
 
-        return binding.root
+        return binding!!.root
 
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        binding = null
+    }
+
 }

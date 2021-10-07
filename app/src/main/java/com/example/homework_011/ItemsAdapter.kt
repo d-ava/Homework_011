@@ -28,7 +28,6 @@ class ItemsAdapter() :
             item = list[adapterPosition]
             binding.ivImage.setImageResource(item.image)
 
-
         }
 
 
@@ -61,7 +60,7 @@ class ItemsAdapter() :
         return list.size
     }
 
-    fun filteredList(flist: MutableList<ItemData>){
+    fun filteredList(flist: MutableList<ItemData>) {
         list = flist
         notifyDataSetChanged()
     }
