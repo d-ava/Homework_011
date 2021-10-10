@@ -1,12 +1,19 @@
 package com.example.homework_011
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.homework_011.databinding.ItemBinding
 
+typealias OnImageClick = (item: ItemData) -> Unit
+
 class ItemsAdapter() :
     RecyclerView.Adapter<ItemsAdapter.ItemViewHolder>() {
+
+
+    // var onImageClick:OnImageClick? = null
+    lateinit var onImageClick: OnImageClick
 
     private var list = mutableListOf<ItemData>()
 
@@ -20,17 +27,21 @@ class ItemsAdapter() :
 
 
     inner class ItemViewHolder(private val binding: ItemBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+        RecyclerView.ViewHolder(binding.root), View.OnClickListener {
 
 
         private lateinit var item: ItemData
+
         fun onBind() {
+            binding.root.setOnClickListener(this)
             item = list[adapterPosition]
             binding.ivImage.setImageResource(item.image)
 
         }
 
-
+        override fun onClick(v: View?) {
+            onImageClick.invoke(list[adapterPosition])
+        }
     }
 
 
@@ -38,6 +49,7 @@ class ItemsAdapter() :
         parent: ViewGroup,
         viewType: Int
     ): ItemsAdapter.ItemViewHolder {
+
         return ItemViewHolder(
             ItemBinding.inflate(
                 LayoutInflater.from(parent.context),
@@ -64,6 +76,7 @@ class ItemsAdapter() :
         list = flist
         notifyDataSetChanged()
     }
+
 
 
 }

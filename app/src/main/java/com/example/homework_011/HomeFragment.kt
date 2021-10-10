@@ -1,5 +1,6 @@
 package com.example.homework_011
 
+import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -7,7 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.homework_011.databinding.HomeScreenBinding
 
@@ -16,7 +19,7 @@ typealias image = R.mipmap
 class HomeFragment : Fragment() {
 
     private val adapter = ItemsAdapter()
-    private val layoutManager = GridLayoutManager(context, 2)
+    private val layoutManager = GridLayoutManager(context, 3)
 
 
     //private lateinit var binding: HomeScreenBinding
@@ -53,6 +56,10 @@ class HomeFragment : Fragment() {
         binding!!.recyclerView.adapter = adapter
         binding!!.recyclerView.layoutManager = layoutManager
 
+        adapter.onImageClick={
+
+        }
+
         //
         fun filterText(text: String) {
             val filteredTitleList = mutableListOf<ItemData>()
@@ -86,6 +93,10 @@ class HomeFragment : Fragment() {
 
         //
 
+adapter.onImageClick = {
+    val action = HomeFragmentDirections.actionToItemFragment(it)
+    findNavController().navigate(action)
+}
 
 
 
@@ -95,6 +106,9 @@ class HomeFragment : Fragment() {
         return binding!!.root
 
     }
+
+
+
 
     override fun onDestroy() {
         super.onDestroy()

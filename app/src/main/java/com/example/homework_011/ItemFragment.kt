@@ -5,11 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavArgs
+import androidx.navigation.fragment.navArgs
 import com.example.homework_011.databinding.ItemScreenBinding
 
-class ItemFragment:Fragment() {
+class ItemFragment : Fragment() {
 
     lateinit var binding: ItemScreenBinding
+
+    private val args: ItemFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -19,7 +23,9 @@ class ItemFragment:Fragment() {
         binding = ItemScreenBinding.inflate(inflater, container, false)
 
 
-
+        binding.tvTiTle.text = args.item.title
+        binding.tvDescription.text = args.item.description
+        binding.ivImage.setImageResource(args.item.image)
 
         return binding.root
     }

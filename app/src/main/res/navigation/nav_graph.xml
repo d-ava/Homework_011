@@ -9,7 +9,7 @@
         android:name="com.example.homework_011.HomeFragment"
         android:label="HomeFragment" >
         <action
-            android:id="@+id/action_homeFragment_to_itemFragment"
+            android:id="@+id/actionToItemFragment"
             app:destination="@id/itemFragment" />
     </fragment>
     <fragment
@@ -17,7 +17,7 @@
         android:name="com.example.homework_011.ItemFragment"
         android:label="ItemFragment" >
         <argument
-            android:name="Item"
+            android:name="item"
             app:argType="com.example.homework_011.ItemData" />
     </fragment>
 </navigation>
