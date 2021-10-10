@@ -19,5 +19,8 @@
         <argument
             android:name="item"
             app:argType="com.example.homework_011.ItemData" />
+        <action
+            android:id="@+id/actionToHomeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
 </navigation>
